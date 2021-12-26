@@ -31,6 +31,7 @@ instagram: @erfan_ics / telegram: @erfan_xm
 6. python3 Cam Dumper.py
 
 ---------------------------------------------------------------------------------------------------------------------------------------
-![Screenshot_2021-07-07_10_55_24](https://user-images.githubusercontent.com/77107767/124800998-5d9b0c80-df67-11eb-8f7f-2ca5dbe0209c.png)
+
+
 
 
