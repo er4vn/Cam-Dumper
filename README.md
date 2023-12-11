@@ -29,6 +29,7 @@ instagram: @n.erfvn / telegram: @radar_db
 6. python3 Cam Dumper.py
 
 ---------------------------------------------------------------------------------------------------------------------------------------
-![Screenshot (20)](https://user-images.githubusercontent.com/77107767/147401785-5d62aed9-7c33-4032-962d-36643969910b.png)
+![cam-dumper](https://github.com/erfannoori/Cam-Dumper/assets/77107767/36aaaa40-df65-4c54-a6ee-e125a3f5ffab)
+
 
 
