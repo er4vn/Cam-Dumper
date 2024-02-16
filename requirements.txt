@@ -1,1 +1,4 @@
 requests
+re
+colorama 
+random
