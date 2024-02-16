@@ -1,8 +1,23 @@
-import requests, re , colorama ,random
+import requests, re, colorama
 from colorama import Fore, Back, Style
 from requests.structures import CaseInsensitiveDict
-colorama.init()
 import os
+
+colorama.init()
+
+def get_geolocation(ip):
+    api_url = f"http://ip-api.com/json/{ip}"
+    response = requests.get(api_url)
+    data = response.json()
+
+    if data['status'] == 'success':
+        city = data.get('city', 'Unknown')
+        state = data.get('regionName', 'Unknown')
+        country = data.get('country', 'Unknown')
+    else:
+        city = state = country = 'Unknown'
+
+    return city, state, country
 
 url = "http://www.insecam.org/en/jsoncountries/"
 
@@ -14,24 +29,23 @@ headers["Host"] = "www.insecam.org"
 headers["Upgrade-Insecure-Requests"] = "1"
 headers["User-Agent"] = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36"
 
-
 resp = requests.get(url, headers=headers)
-
 data = resp.json()
 countries = data['countries']
-os.system("cls")
-print(Fore.LIGHTGREEN_EX +"""
+
+os.system("cls" if os.name == "nt" else "clear")
+
+print(Fore.LIGHTGREEN_EX + """
 ╔═╗╔═╗╔╦╗  ╔╦╗╦ ╦╔╦╗╔═╗╔═╗╦═╗
 ║  ╠═╣║║║───║║║ ║║║║╠═╝║╣ ╠╦╝
 ╚═╝╩ ╩╩ ╩  ═╩╝╚═╝╩ ╩╩  ╚═╝╩╚═
 \033[1;37m+-----------------------------+
 | \033[1;31m[#] \033[1;37mDeveloper : Erfan Noori |
-| \033[1;31m[#] \033[1;37mInstagram : @n.erfvn    |                                 
+| \033[1;31m[#] \033[1;37mInstagram : @n.erfvn    |
 | \033[1;31m[#] \033[1;37mTelegram : @Radar_db    |
 | \033[1;31m[#] \033[1;37mVersion : 1.0.1         |
-+-----------------------------+                         
++-----------------------------+
 """)
-
 
 for key, value in countries.items():
     print(f""" \033[1;30m[+] \033[1;37mCountry : {value["country"]}
@@ -40,11 +54,7 @@ for key, value in countries.items():
  +-----------------------------------+""")
     print("")
 
-
-
 try:
-   
-
     country = input(" Enter the Country Code : ")
     res = requests.get(
         f"http://www.insecam.org/en/bycountry/{country}", headers=headers
@@ -59,14 +69,14 @@ try:
         find_ip = re.findall(r"http://\d+.\d+.\d+.\d+:\d+", res.text)
     
         with open(f'{country}.txt', 'w') as f:
-          for ip in find_ip:
-              print("")
-              print("\033[1;30m[+] \033[1;37m", ip)
-              f.write(f'{ip}\n')
-except:
-    pass
+            for ip in find_ip:
+                ip_address = ip.split("//")[1].split(":")[0]  # Extracting IP address
+                city, state, country_geo = get_geolocation(ip_address)
+                print(f"\033[1;30m[+] \033[1;37m {ip}")
+                print(f"    City: {city}, State: {state}, Country: {country_geo}")
+                f.write(f'{ip} - City: {city}, State: {state}, Country: {country_geo}\n')
+except Exception as e:
+    print(f"An error occurred: {e}")
 finally:
     print("\033[1;37m")
     print('\033[37mSave File : '+country+'.txt')
-
-    exit()
