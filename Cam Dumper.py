@@ -27,7 +27,7 @@ print(Fore.LIGHTGREEN_EX +"""
 \033[1;37m+-----------------------------+
 | \033[1;31m[#] \033[1;37mDeveloper : Erfan Noori |
 | \033[1;31m[#] \033[1;37mInstagram : @n.erfvn    |                                 
-| \033[1;31m[#] \033[1;37mTelegram : @Radar_db    |
+| \033[1;31m[#] \033[1;37mTelegram : @er4vnn    |
 | \033[1;31m[#] \033[1;37mVersion : 1.0.1         |
 +-----------------------------+                         
 """)
